@@ -364,51 +364,51 @@ float a(float t06[4][4])
   float r02[3][3],r03[3][3],tp[3][3],r36[3][3];
 
   for(i=0;i<3;i++)
-      {
-      for(j=0;j<3;j++)
-      {
-          rs=0;
-          for(k=0;k<3;k++)
-              {
-                  rs=rs+(r01q1[i][k]*r12q2[k][j]);
-              }
-          r02[i][j]=rs;
-      }
-      }
+  {
+    for(j=0;j<3;j++)
+    {
+        rs=0;
+        for(k=0;k<3;k++)
+            {
+                rs=rs+(r01q1[i][k]*r12q2[k][j]);
+            }
+        r02[i][j]=rs;
+    }
+  }
 
   for(i=0;i<3;i++)
-      {
-      for(j=0;j<3;j++)
-      {
-          rs=0;
-          for(k=0;k<3;k++)
-              {
-                  rs=rs+(r02[i][k]*r01q3[k][j]);
-              }
-          r03[i][j]=rs;
-      }
-      }
+  {
+    for(j=0;j<3;j++)
+    {
+        rs=0;
+        for(k=0;k<3;k++)
+            {
+                rs=rs+(r02[i][k]*r01q3[k][j]);
+            }
+        r03[i][j]=rs;
+    }
+  }
 
   for(i=0;i<3;i++)
-      {
-      for(j=0;j<3;j++)
-      {
-          tp[j][i]=r03[i][j];
-      }
-      }
+  {
+    for(j=0;j<3;j++)
+    {
+        tp[j][i]=r03[i][j];
+    }
+  }
 
   for(i=0;i<3;i++)
+  {
+    for(j=0;j<3;j++)
+    {
+      rs=0;
+      for(k=0;k<3;k++)
       {
-      for(j=0;j<3;j++)
-      {
-          rs=0;
-          for(k=0;k<3;k++)
-              {
-                  rs=rs+(tp[i][k]*t06[k][j]);
-              }
-          r36[i][j]=rs;
+          rs=rs+(tp[i][k]*t06[k][j]);
       }
-      }
+      r36[i][j]=rs;
+  }
+  }
   float q4=(fabs(atan(r36[1][2]/r36[0][2])+M_PI)*180/M_PI)-90;
   
   if(q4>180)
@@ -444,51 +444,51 @@ float b(float t06[4][4])
   float r02[3][3],r03[3][3],tp[3][3],r36[3][3];
 
   for(i=0;i<3;i++)
+  {
+    for(j=0;j<3;j++)
+    {
+      rs=0;
+      for(k=0;k<3;k++)
       {
-      for(j=0;j<3;j++)
-      {
-          rs=0;
-          for(k=0;k<3;k++)
-              {
-                  rs=rs+(r01q1[i][k]*r12q2[k][j]);
-              }
-          r02[i][j]=rs;
+        rs=rs+(r01q1[i][k]*r12q2[k][j]);
       }
-      }
+      r02[i][j]=rs;
+    }
+  }
 
   for(i=0;i<3;i++)
+  {
+    for(j=0;j<3;j++)
+    {
+      rs=0;
+      for(k=0;k<3;k++)
       {
-      for(j=0;j<3;j++)
-      {
-          rs=0;
-          for(k=0;k<3;k++)
-              {
-                  rs=rs+(r02[i][k]*r01q3[k][j]);
-              }
-          r03[i][j]=rs;
+        rs=rs+(r02[i][k]*r01q3[k][j]);
       }
-      }
+      r03[i][j]=rs;
+    }
+  }
 
   for(i=0;i<3;i++)
-      {
-      for(j=0;j<3;j++)
-      {
-          tp[j][i]=r03[i][j];
-      }
-      }
+  {
+    for(j=0;j<3;j++)
+    {
+      tp[j][i]=r03[i][j];
+    }
+  }
 
   for(i=0;i<3;i++)
+  {
+    for(j=0;j<3;j++)
+    {
+      rs=0;
+      for(k=0;k<3;k++)
       {
-      for(j=0;j<3;j++)
-      {
-          rs=0;
-          for(k=0;k<3;k++)
-              {
-                  rs=rs+(tp[i][k]*t06[k][j]);
-              }
-          r36[i][j]=rs;
+        rs=rs+(tp[i][k]*t06[k][j]);
       }
-      }
+      r36[i][j]=rs;
+    }
+  }
 
   float q5=acos(r36[2][2])*180/M_PI;    
   
@@ -496,8 +496,6 @@ float b(float t06[4][4])
   {
     q5=90; 
   }
-  
-  
   return(q5); 
 }
 
