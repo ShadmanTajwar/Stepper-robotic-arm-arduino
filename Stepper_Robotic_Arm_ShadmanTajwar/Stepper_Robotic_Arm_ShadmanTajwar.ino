@@ -339,6 +339,168 @@ float g(float t06[14][4][4], int n) //j5 angle
   return(q4); 
 }
 
+float a(float t06[4][4])
+{
+      float xc=t06[0][3]-(d6*t06[0][2]);
+      float yc=t06[1][3]-(d6*t06[1][2]);
+      float zc=t06[2][3]-(d6*t06[2][2]);
+
+      float q1=atan(yc/xc);
+      float r=sqrt((pow(xc,2))+pow(yc,2))-l0;
+      float pwz=zc-d1;
+      float s=sqrt((pow(r,2))+pow(pwz,2));
+      float a=atan(pwz/r);
+      float b=fabs(acos((pow(s,2)+pow(l2,2)-pow(d4,2))/(2*l2*s)));
+      float g=fabs(acos((pow(l2,2)+pow(d4,2)-pow(s,2))/(2*l2*d4)));
+      float q2=(M_PI/2)-a-b;
+      float q3=(M_PI/2)-g;
+
+      float r01q1[3][3]={{cos(q1),0,-sin(q1)},{sin(q1),0,cos(q1)},{0,-1,0}};
+      float r01q3[3][3]={{cos(q3),0,-sin(q3)},{sin(q3),0,cos(q3)},{0,-1,0}};
+      float r12q2[3][3]={{cos(q2-(M_PI/2)),-sin(q2-(M_PI/2)),0},{sin(q2-(M_PI/2)),cos(q2-(M_PI/2)),0},{0,0,1}};
+
+      int i,j,k;
+      float rs;
+      float r02[3][3],r03[3][3],tp[3][3],r36[3][3];
+
+      for(i=0;i<3;i++)
+          {
+          for(j=0;j<3;j++)
+          {
+              rs=0;
+              for(k=0;k<3;k++)
+                  {
+                      rs=rs+(r01q1[i][k]*r12q2[k][j]);
+                  }
+              r02[i][j]=rs;
+          }
+          }
+
+      for(i=0;i<3;i++)
+          {
+          for(j=0;j<3;j++)
+          {
+              rs=0;
+              for(k=0;k<3;k++)
+                  {
+                      rs=rs+(r02[i][k]*r01q3[k][j]);
+                  }
+              r03[i][j]=rs;
+          }
+          }
+
+      for(i=0;i<3;i++)
+          {
+          for(j=0;j<3;j++)
+          {
+              tp[j][i]=r03[i][j];
+          }
+          }
+
+      for(i=0;i<3;i++)
+          {
+          for(j=0;j<3;j++)
+          {
+              rs=0;
+              for(k=0;k<3;k++)
+                  {
+                      rs=rs+(tp[i][k]*t06[k][j]);
+                  }
+              r36[i][j]=rs;
+          }
+          }
+      float q4=(fabs(atan(r36[1][2]/r36[0][2])+M_PI)*180/M_PI)-90;
+      
+      if(q4>180)
+      {
+        q4=180; 
+      }
+      
+      return(q4); 
+}
+
+float b(float t06[4][4])
+{
+    float xc=t06[0][3]-(d6*t06[0][2]);
+    float yc=t06[1][3]-(d6*t06[1][2]);
+    float zc=t06[2][3]-(d6*t06[2][2]);
+
+    float q1=atan(yc/xc);
+    float r=sqrt((pow(xc,2))+pow(yc,2))-l0;
+    float pwz=zc-d1;
+    float s=sqrt((pow(r,2))+pow(pwz,2));
+    float a=atan(pwz/r);
+    float b=fabs(acos((pow(s,2)+pow(l2,2)-pow(d4,2))/(2*l2*s)));
+    float g=fabs(acos((pow(l2,2)+pow(d4,2)-pow(s,2))/(2*l2*d4)));
+    float q2=(M_PI/2)-a-b;
+    float q3=(M_PI/2)-g;
+
+    float r01q1[3][3]={{cos(q1),0,-sin(q1)},{sin(q1),0,cos(q1)},{0,-1,0}};
+    float r01q3[3][3]={{cos(q3),0,-sin(q3)},{sin(q3),0,cos(q3)},{0,-1,0}};
+    float r12q2[3][3]={{cos(q2-(M_PI/2)),-sin(q2-(M_PI/2)),0},{sin(q2-(M_PI/2)),cos(q2-(M_PI/2)),0},{0,0,1}};
+
+    int i,j,k;
+    float rs;
+    float r02[3][3],r03[3][3],tp[3][3],r36[3][3];
+
+    for(i=0;i<3;i++)
+        {
+        for(j=0;j<3;j++)
+        {
+            rs=0;
+            for(k=0;k<3;k++)
+                {
+                    rs=rs+(r01q1[i][k]*r12q2[k][j]);
+                }
+            r02[i][j]=rs;
+        }
+        }
+
+    for(i=0;i<3;i++)
+        {
+        for(j=0;j<3;j++)
+        {
+            rs=0;
+            for(k=0;k<3;k++)
+                {
+                    rs=rs+(r02[i][k]*r01q3[k][j]);
+                }
+            r03[i][j]=rs;
+        }
+        }
+
+    for(i=0;i<3;i++)
+        {
+        for(j=0;j<3;j++)
+        {
+            tp[j][i]=r03[i][j];
+        }
+        }
+
+    for(i=0;i<3;i++)
+        {
+        for(j=0;j<3;j++)
+        {
+            rs=0;
+            for(k=0;k<3;k++)
+                {
+                    rs=rs+(tp[i][k]*t06[k][j]);
+                }
+            r36[i][j]=rs;
+        }
+        }
+
+    float q5=acos(r36[2][2])*180/M_PI;    
+    
+    if(q5>180||q5<45)
+    {
+      q5=90; 
+    }
+    
+    
+    return(q5); 
+}
+
 double sgn(double x)
 {
   if (x > 0.0) return 1.0;
